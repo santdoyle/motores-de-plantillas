@@ -1,3 +1,4 @@
+import e from "express"
 
 export default class Productos{
     constructor(arr){
@@ -33,20 +34,27 @@ export default class Productos{
     actualizar(id, nuevaInfo){
         const arr = Object.entries(this.arr)
         
-        arr[id] = {
-            title: nuevaInfo.title + id,
-            price: nuevaInfo.price,
-            thumbnail: nuevaInfo.thumbnail,
-            id: arr.length
+        if(id > arr.length){
+            
+            throw new Error('El producto indicado no existe')
+        
+        }else{
+            arr[id] = {
+                title: nuevaInfo.title,
+                price: nuevaInfo.price,
+                thumbnail: nuevaInfo.thumbnail,
+                id: parseInt(id)
+            }
+    
+            return arr[id]
         }
-
-        return arr[id]
+        
     }
 
     borrar(id){
         const listado = Object.entries(this.arr)
-        const nuevoListado = listado.splice(0, id)
+        listado.splice(id, 1)
 
-        return nuevoListado
+        return listado
     }
 }

@@ -20,7 +20,7 @@ router.get('/public', (req, resp) => {
 
 
 //Listado de productos vacio
-const listaProductos = []
+let listaProductos = []
 
 //Listar todos los productos
 router.get('/productos/listar', (req, resp) => {
@@ -59,7 +59,7 @@ router.post('/productos/guardar/', (req, resp, next) => {
 
         listaProductos.push(guardado)
     
-        resp.json(listaProductos)
+        resp.json("Producto agregado correctamente")
         
     } catch (error) {
         next(error)
@@ -75,15 +75,17 @@ router.put('/productos/actualizar/:id', (req, resp) => {
 
     listaProductos[id] = respuesta
 
-    resp.json(respuesta)
+    resp.json(listaProductos)
 })
 
 //Método para borrar producto
 router.delete('/productos/borrar/:id', (req, resp)=> {
     const id = req.params.id
     const productos = new Productos(listaProductos);
-    const eliminado = productos.borrar(id)
+    let eliminado = productos.borrar(id)
 
-    resp.json(eliminado)
+    listaProductos = eliminado
+
+    resp.json(listaProductos)
 })
 
