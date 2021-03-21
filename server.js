@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import Productos from './classProductos.js';
+import pug from 'pug'
 
 const app = express()
 const router = express.Router()
@@ -34,7 +35,7 @@ server.on('error', (error) => console.log(`Ocurrió un error: ${error}`))
 //Endopint para vista con handlebar
 router.get('/productos/vista', (req, resp) => {
     resp.render('index.pug', {
-        msj: "Lista de productos añadidos",
+        msj: "Lista de productos añadidos: Motor-pug",
         alert: "Aún no hay productos cargados",
         producto: listaProductos
     })
