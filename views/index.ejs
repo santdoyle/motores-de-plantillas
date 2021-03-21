@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/style.css" rel="stylesheet">
+    <title>Motor de plantilla EJS</title>
+</head>
+<body>
+    <div class="container bootstrap contenedor">
+        <h3><%- msj %></h3>
+        <div class="formulario">
+            <% if (producto.length) { %>
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <% producto.forEach(function(item) { %>
+                        <tr>
+                            <td><%= item.id %></td>
+                            <td><%= item.title %></td>
+                            <td>$<%= item.price %></td>
+                            <td><img src=<%= item.thumbnail %> class="imgTable"></td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>  
+                    <% }else{ %>
+                        <div class="alert alert-warning" role="alert">
+                            <h3><%- alert %></h3>
+                        </div>     
+                    <% } %>
+        </div> 
+    </div>       
+</body>
+</html>

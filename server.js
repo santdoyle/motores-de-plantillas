@@ -14,18 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 app.use('/api', router)
 
-/*
-Comentario de prueba para branch motor-ejs
-*/
 
-//Configuración handlebars
-app.engine('hbs', handlebars({
-    extname: ".hbs",
-    defaultLayout: 'index.hbs',
-    layoutsDir: path.join(__dirname, '/views/layouts'),
-    partialsDir: path.join(__dirname, '/views/partials')
-}))
-app.set('view engine', 'hbs')
+//Configuración motor EJS
+app.set('view engine', 'ejs')
 app.set('views', './views')
 
 //Espacio publico del servidor
@@ -45,9 +36,10 @@ server.on('error', (error) => console.log(`Ocurrió un error: ${error}`))
 
 //Endopint para vista con handlebar
 router.get('/productos/vista', (req, resp) => {
-    resp.render('main', {
-        data: true,
-        producto: listaProductos
+    resp.render('index', {
+        msj: "Lista de productos añadidos",
+        producto: listaProductos,
+        alert: "Aún no hay productos disponibles"
     })
 })
 
