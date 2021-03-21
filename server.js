@@ -32,7 +32,7 @@ router.get('/public', (req, resp) => {
 })
 
 
-//Servidor
+//Servidor puerto 8080
 const server = app.listen(8080, () => {
     console.log(`El servidor está conectado: ${server.address().port}`)
 })
