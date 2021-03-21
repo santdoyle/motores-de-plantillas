@@ -4,7 +4,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import Productos from './classProductos.js';
-import pug from 'pug'
 
 const app = express()
 const router = express.Router()
