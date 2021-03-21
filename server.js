@@ -31,11 +31,13 @@ router.get('/public', (req, resp) => {
     resp.sendFile('/public/style.css')
 })
 
+
 //Servidor
 const server = app.listen(8080, () => {
     console.log(`El servidor está conectado: ${server.address().port}`)
 })
 server.on('error', (error) => console.log(`Ocurrió un error: ${error}`))
+
 
 //Endopint para vista con handlebar
 router.get('/productos/vista', (req, resp) => {
@@ -47,6 +49,7 @@ router.get('/productos/vista', (req, resp) => {
 
 //Listado de productos vacio
 let listaProductos = []
+
 
 //Listar todos los productos
 router.get('/productos/listar', (req, resp) => {
