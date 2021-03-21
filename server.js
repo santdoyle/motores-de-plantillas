@@ -4,7 +4,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import Productos from './classProductos.js';
-import handlebars from 'express-handlebars';
 
 const app = express()
 const router = express.Router()
@@ -14,18 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 app.use('/api', router)
 
-/*
-Comentario de prueba para branche Motor-pug
-*/
-
-//Configuración handlebars
-app.engine('hbs', handlebars({
-    extname: ".hbs",
-    defaultLayout: 'index.hbs',
-    layoutsDir: path.join(__dirname, '/views/layouts'),
-    partialsDir: path.join(__dirname, '/views/partials')
-}))
-app.set('view engine', 'hbs')
+app.set('view engine', 'pug')
 app.set('views', './views')
 
 //Espacio publico del servidor
@@ -45,11 +33,12 @@ server.on('error', (error) => console.log(`Ocurrió un error: ${error}`))
 
 //Endopint para vista con handlebar
 router.get('/productos/vista', (req, resp) => {
-    resp.render('main', {
-        data: true,
+    resp.render('index.pug', {
+        msj: "Lista de productos añadidos",
+        alert: "Aún no hay productos cargados",
         producto: listaProductos
     })
-})
+})  
 
 //Listado de productos vacio
 let listaProductos = []

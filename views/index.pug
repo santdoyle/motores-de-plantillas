@@ -1,0 +1,29 @@
+html
+    head
+        link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" type="text/css" href="/public/style.css")
+        title Pug
+    body    
+        .container.bootstrap.contenedor
+        h1=msj 
+        .formulario
+            if producto.length
+                table.table.table-striped.table-dark
+                    thead
+                        tr
+                            th(scope='col') ID
+                            th(scope='col') Nombre
+                            th(scope='col') Precio
+                            th(scope='col') Imagen
+                    tbody
+                        each val in producto
+                            val.id
+                            tr
+                                td=val.id
+                                td=val.title
+                                td=val.price
+                                td
+                                    img.imgTable(src=val.thumbnail)
+            else
+                div.alert.alert-warning(role='alert')
+                    h3=alert
