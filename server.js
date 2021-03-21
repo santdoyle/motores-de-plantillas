@@ -14,6 +14,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 app.use('/api', router)
 
+/*
+Comentario de prueba para branche Motor-pug
+*/
+
 //Configuración handlebars
 app.engine('hbs', handlebars({
     extname: ".hbs",
