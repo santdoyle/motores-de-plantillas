@@ -1,12 +1,11 @@
-import express from 'express';
-import path from 'path'
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-import Productos from './classProductos.js';
-import handlebars from 'express-handlebars';
-
+const express = require('express')
+const path = require('path')
+const Productos = require('./classProductos.js').Productos
+const handlebars = require('express-handlebars')
 const app = express()
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
+
 const router = express.Router()
 
 //Configuración express
@@ -14,29 +13,27 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 app.use('/api', router)
 
-//Configuración handlebars
-app.engine('hbs', handlebars({
-    extname: ".hbs",
-    defaultLayout: 'index.hbs',
-    layoutsDir: path.join(__dirname, '/views/layouts'),
-    partialsDir: path.join(__dirname, '/views/partials')
-}))
-app.set('view engine', 'hbs')
-app.set('views', './views')
 
 //Espacio publico del servidor
 app.use('/public', express.static('public'))
 router.get('/public', (req, resp) => {
     resp.sendFile('/public/index.html')
     resp.sendFile('/public/style.css')
+    resp.sendFile('/public/main.js')
 })
 
 
 //Servidor puerto 8080
-const server = app.listen(8080, () => {
+const server = http.listen(8080, () => {
     console.log(`El servidor está conectado: ${server.address().port}`)
 })
 server.on('error', (error) => console.log(`Ocurrió un error: ${error}`))
+
+//Conexión a websocket
+io.on('connection', (socket) => {
+    console.log('Usuario conectado')
+    socket.emit('mensaje', listaProductos)
+})
 
 
 //Endopint para vista con handlebar

@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js">
+    </script>
+	<script src="main.js"></script>
     <title>Cargar productos</title>
 </head>
 <body>
     <div class="container bootstrap contenedor">
+        
         <form action="/api/productos/guardar/" method="POST" id="Highlighted-form" class="col-sm-6 col-sm-offset-3 formulario">
             <h2>Ingresar productos</h2>
             <div class="form-group">
@@ -33,9 +38,23 @@
             </div><!-- End thumbnail input -->
             
             <input type="submit" class="btn btn-success">
-          
             
         </form>
-    </div>    
+
+        <table class="table table-striped table-dark" id="miTabla">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                 
+            </tbody>
+        </table>
+
+    </div> 
 </body>
 </html>

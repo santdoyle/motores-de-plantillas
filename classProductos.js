@@ -1,6 +1,4 @@
-import e from "express"
-
-export default class Productos{
+class Productos{
     constructor(arr){
         this.arr = arr
     }
@@ -66,3 +64,5 @@ export default class Productos{
         return this.arr
     }
 }
+
+module.exports.Productos = Productos

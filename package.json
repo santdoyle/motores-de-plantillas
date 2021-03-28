@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "nodemon server.js"
   },
@@ -23,6 +22,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "socket.io": "^4.0.0"
   }
 }
