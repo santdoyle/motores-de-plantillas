@@ -6,6 +6,11 @@ body{
     width: 100%;
 }
 
+.textarea{
+    width: 100%;
+    margin-top: 20px;
+}
+
 .contenedor-tabla{
     display: block;
     background: #fff;
@@ -38,4 +43,37 @@ body{
     line-height:32px;
 	font-weight: 400;
 	color: #333;
+}
+
+.sala-chat{
+    padding: 20px;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+.hidden{
+    display: none;
+}
+
+.chat{
+    padding: 10px;
+    display: inline-table;
+    width: 48%;
+}
+
+.chat ul{
+    margin: 0;
+    padding: 0;
+}
+
+.chat ul li{
+    border-bottom: solid 1px #eee;
+    padding: 10px;
+    list-style: none;
+}
+
+.ventana-chat{
+    background: #f9f9f9;
+    padding: 10px
 }

@@ -3,7 +3,6 @@ const socket = io()
 socket.on('mensaje', data => {
     data.forEach(element => {
         
-        console.log(element)
         const template = Handlebars.compile("<tr>"
                                                 +"<td>{{producto.id}}</td>"
                                                 +"<td>{{producto.title}}</td>"
@@ -19,6 +18,46 @@ socket.on('mensaje', data => {
         
         row.innerHTML = html
     });
-
     
+})
+
+//Set chat
+const verificarEmail = document.getElementById('verificarEmail');
+
+const chat = document.getElementById('chat');
+const correo = document.getElementById('correo');
+const mensaje = document.getElementById('mensaje');
+const ventanaChat = document.getElementById('ventana-chat')
+
+verificarEmail.addEventListener('submit', (event) => {
+    event.preventDefault()
+    
+    if(correo.value !== ""){
+        chat.classList.remove("hidden");
+        mensaje.disabled = false
+    }
+
+})
+
+chat.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const msg = {
+        correo: correo.value,
+        fecha: moment().format(),
+        mensaje: mensaje.value
+    }
+    mensaje.value = "";
+    
+    socket.emit('evento-chat', msg)
+    
+})
+
+
+//Recibo evento desde el server
+socket.on('server-mensaje', (data) => {
+    console.log(data)
+    let item = document.createElement('LI');
+    item.textContent = `${data.correo} [${data.fecha}]:  ${data.mensaje}`
+    ventanaChat.appendChild(item)
 })

@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const Productos = require('./classProductos.js').Productos
+const LogsChat = require('./classLogsChat.js').LogsChat
 const handlebars = require('express-handlebars')
 const app = express()
 const http = require('http').Server(app)
@@ -33,6 +34,16 @@ server.on('error', (error) => console.log(`Ocurrió un error: ${error}`))
 io.on('connection', (socket) => {
     console.log('Usuario conectado')
     socket.emit('mensaje', listaProductos)
+
+    //Recibo el evento del Chat
+    socket.on('evento-chat', (data) => {
+        console.log(data)
+        const logs = new LogsChat()
+        logs.guardar(data)
+        
+        io.emit('server-mensaje', data)
+
+    })
 })
 
 
@@ -43,6 +54,7 @@ router.get('/productos/vista', (req, resp) => {
         producto: listaProductos
     })
 })
+
 
 //Listado de productos vacio
 let listaProductos = []
