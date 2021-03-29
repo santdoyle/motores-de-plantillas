@@ -1,5 +1,6 @@
 const socket = io()
 
+//Tabla de productos con Handlebar
 socket.on('mensaje', data => {
     data.forEach(element => {
         
@@ -29,6 +30,7 @@ const correo = document.getElementById('correo');
 const mensaje = document.getElementById('mensaje');
 const ventanaChat = document.getElementById('ventana-chat')
 
+//"Verificación" de correo
 verificarEmail.addEventListener('submit', (event) => {
     event.preventDefault()
     
@@ -39,6 +41,7 @@ verificarEmail.addEventListener('submit', (event) => {
 
 })
 
+//Envío de mensajes al server
 chat.addEventListener('submit', (event) => {
     event.preventDefault();
 
